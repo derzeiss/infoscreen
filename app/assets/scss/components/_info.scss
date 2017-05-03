@@ -1,0 +1,66 @@
+info-main {
+  display: block;
+  width: $infoscreen--width;
+  height: $infoscreen--height;
+  font-size: $infoscreen--font-size;
+  background: #fff;
+}
+
+info-impression-container {
+  display: block;
+  width: $impression--width;
+  height: $impression--height;
+  z-index: 1;
+  background: $col-grey-1;
+  overflow: hidden;
+}
+
+info-impression {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.info-impression__content {
+  @include flex(row, center, center);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity #{$impression--fading-duration};
+}
+
+.info-impression_visible {
+  opacity: 1;
+}
+
+.info-impression-description {
+  position: absolute;
+  bottom: $impression-description--offset-bot;
+  right: $impression-description--offset-right;
+  padding: 1em;
+  line-height: 1.3em;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+}
+
+info-clock {
+  position: absolute;
+  bottom: $event--spacing * .6;
+  right: $event--spacing;
+  z-index: 1;
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 1em;
+  color: $col-white;
+  text-shadow: 0 2px 16px $col-black, 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.animation-helper.ng-hide {
+  height: 0;
+  transition: height $event--fx-duration;
+}

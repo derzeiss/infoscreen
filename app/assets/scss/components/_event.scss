@@ -1,0 +1,41 @@
+event-list {
+  display: block;
+  top: -$event--height;
+  width: $event-list--width;
+  height: $event-list--height + $event--height;
+  background: #f1f1f1;
+  overflow: hidden;
+}
+
+event-item, .event {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: $event--width;
+  height: $event--height;
+  padding-right: $event--spacing;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+}
+
+event-item > * {
+  margin-left: $event--spacing;
+}
+
+.event__col-left {
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.event__title {
+  @extend %one-line;
+  line-height: 1.8em;
+}
+
+.event__location {
+  @extend %one-line;
+  font-size: .9em;
+  line-height: 1.1em;
+  opacity: .6;
+}

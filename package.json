@@ -1,0 +1,29 @@
+{
+  "name": "infoscreen2",
+  "version": "0.1.0",
+  "main": "api/app.js",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/derzeiss/infoscreen2.git"
+  },
+  "scripts": {
+    "postinstall": "bower install && npm run build",
+    "build": "gulp default"
+  },
+  "dependencies": {
+    "cors": "latest",
+    "body-parser": "latest",
+    "express": "^4",
+    "multiparty": "latest",
+    "promised-io": "latest",
+    "request": "latest"
+  },
+  "devDependencies": {
+    "bower": "latest",
+
+    "gulp": "latest",
+    "gulp-clean-css": "latest",
+    "gulp-sass": "latest"
+  }
+}

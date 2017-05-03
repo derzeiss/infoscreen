@@ -1,0 +1,26 @@
+@import '__config';
+@import '__config-info';
+@import 'mixins';
+@import 'font';
+@import 'reset';
+@import 'input';
+@import 'components/btn';
+@import 'components/event';
+@import 'components/impression';
+@import 'components/menu';
+
+@import 'components/info';
+
+.img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+%one-line {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
