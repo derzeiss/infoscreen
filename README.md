@@ -93,7 +93,7 @@ File | Usage | Action to apply changes
 * Filter events
     * Sort events by Date and then by time (usually done by CT-API)
     
-[installer-win]: https://raw.githubusercontent.com/derzeiss/infoscreen2/master/script/installer.bat
+[installer-win]: https://raw.githubusercontent.com/derzeiss/infoscreen/master/script/installer.bat
 [nodejs-home]: https://nodejs.org
 [git-win]: https://git-for-windows.github.io/
 
