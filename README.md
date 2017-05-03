@@ -1,6 +1,5 @@
-# infoscreen2
-<small>v2.1.0</small>  
-Infoscreen for the ChurchTools-API
+# infoscreen
+<small>v2.1.0</small> Infoscreen for the ChurchTools-API 
 
 ### Table of contents
 - [Installation](#installation)
