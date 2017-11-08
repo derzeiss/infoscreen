@@ -3,14 +3,13 @@ node_modules/
 
 api/cookies/
 api/data/
-api/config_local.js
+api/config.*.js
 
 app/assets/bower_components/
 app/assets/scss/base.css
 app/assets/scss/base.css.map
 app/assets/scss/base.min.css
 app/assets/scss/base.min.css.map
-
 
 
 app/imp/*
