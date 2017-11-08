@@ -8,8 +8,12 @@ api/config_local.js
 app/assets/bower_components/
 app/assets/scss/base.css
 app/assets/scss/base.css.map
+app/assets/scss/base.min.css
+app/assets/scss/base.min.css.map
 
 
 
 app/imp/*
 !app/imp/transparent.png
+
+package-lock.json

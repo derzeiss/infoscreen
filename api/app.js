@@ -21,7 +21,7 @@ if (config.enableCors) {
 }
 
 String.prototype.toAbsolutePath = function () {
-    var relativePath = this[0] == '/' ? this : '/' + this;
+    var relativePath = this[0] === '/' ? this : '/' + this;
     return path.resolve(__dirname + relativePath);
 };
 
@@ -220,7 +220,7 @@ function normalizeEvents(events, resources) {
 
         // don't display event if it's over or not today
         date = new Date(event.enddate);
-        if (date.getTime() < now.getTime() || date.getDay() != now.getDay()) {
+        if (date.getTime() < now.getTime() || date.getDay() !== now.getDay()) {
             console.log('filtered cause it\'s over or not today:', event.startdate, '|', event.enddate, '|', event.bezeichnung);
             continue;
         }
@@ -370,7 +370,7 @@ function requestJsonFromCt(url, form, headers) {
             return;
         }
         // check CT-API error
-        if (json.status != 'success') {
+        if (json.status !== 'success') {
             promise.reject(getErrorMessage(app.errorTypes.ctError, app.paths.ct + url, json.data));
             return;
         }
@@ -412,7 +412,7 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.contentType = 'text/plain';
     res.send(err.status + ' ' + err.message);
-    if (err.status != 404) console.err(err);
+    if (err.status !== 404) console.err(err);
 });
 
 http.listen(config.port, function () {

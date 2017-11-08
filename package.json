@@ -21,9 +21,11 @@
   },
   "devDependencies": {
     "bower": "latest",
-
     "gulp": "latest",
     "gulp-clean-css": "latest",
-    "gulp-sass": "latest"
+    "gulp-filter": "^5.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "latest",
+    "gulp-sourcemaps": "^2.6.1"
   }
 }
