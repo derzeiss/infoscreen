@@ -9,7 +9,7 @@ var Form = multiparty.Form;
 var path = require('path');
 var request = require('request');
 var util = require("util");
-var config = require("./config.gza");
+var config = require("./config");
 
 var promisedIo = require('promised-io/promise');
 var Deferred = promisedIo.Deferred;
