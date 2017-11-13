@@ -11,7 +11,7 @@ info-impression-container {
   width: $impression--width;
   height: $impression--height;
   z-index: 1;
-  background: $col-grey-1;
+  background: $c-grey-1;
   overflow: hidden;
 }
 
@@ -56,11 +56,11 @@ info-clock {
   font-weight: 700;
   font-size: 1.2em;
   line-height: 1em;
-  color: $col-white;
-  text-shadow: 0 2px 16px $col-black, 0 2px 5px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-shadow: 0 2px 16px #000, 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.animation-helper.ng-hide {
+.animation-helper_hidden {
   height: 0;
   transition: height $event--fx-duration;
 }

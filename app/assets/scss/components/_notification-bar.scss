@@ -1,0 +1,28 @@
+notification-bar {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.notification {
+  display: inline-block;
+  left: 50%;
+  width: auto;
+  margin: 0;
+  padding: .7rem 1.7rem;
+  border-radius: 2px;
+  color: #fff;
+  background: $c-primary;
+  transform: translate(-50%, -140%);
+  transition: transform .15s;
+}
+
+.notification_visible {
+  transform: translate(-50%, 30%);
+}
+
+.notification__msg {
+  @extend %one-line;
+}

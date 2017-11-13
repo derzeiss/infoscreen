@@ -9,7 +9,7 @@ var Form = multiparty.Form;
 var path = require('path');
 var request = require('request');
 var util = require("util");
-var config = require("./config");
+var config = require("./config.gza");
 
 var promisedIo = require('promised-io/promise');
 var Deferred = promisedIo.Deferred;
@@ -116,7 +116,7 @@ app.get('/api/impression', function (req, res) {
 app.post('/api/impression', jsonParser, function (req, res) {
     // TODO validate impressions
     fs.writeFileSync(app.paths.impressions, JSON.stringify(req.body));
-    res.status(204);
+    res.sendStatus(204);
 });
 
 app.post('/api/impressionImg', function (req, res) {
@@ -151,6 +151,16 @@ app.post('/api/impressionImg', function (req, res) {
             })
         }
     });
+
+});
+
+app.delete('/api/impressionImg/:filename', function (req, res, next) {
+    try {
+        fs.unlinkSync('../app/imp/' + req.params.filename);
+        res.sendStatus(204);
+    } catch (err) {
+        res.sendStatus(404);
+    }
 
 });
 

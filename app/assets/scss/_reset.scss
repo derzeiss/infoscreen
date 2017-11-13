@@ -1,4 +1,4 @@
-* {
+*, *:before, *:after {
   position: relative;
   margin: 0;
   padding: 0;
@@ -6,9 +6,9 @@
   outline: none;
 }
 
-body {
+html, body {
   font: 400 16px/1.6em 'Roboto', sans-serif;
-  background: $col-grey-4;
+  background: #f5f5f5;
 }
 
 article, aside, div, footer, header, main, section {

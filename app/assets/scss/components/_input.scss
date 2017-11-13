@@ -1,0 +1,41 @@
+// ---------- input ----------
+.input {
+  font: inherit;
+  display: inline-block;
+  border: none;
+  outline: none;
+  background: #fff;
+}
+
+.input_fullsize {
+  width: 100%;
+}
+
+.input_labeled {
+  display: none
+}
+
+.input_text {
+  padding: .5rem .6rem;
+  border: 1px solid #bbb;
+  transition: border-color .3s;
+}
+
+.input_text:focus {
+  border-color: $c-secondary;
+}
+
+// ---------- label ----------
+.label {
+  @extend .btn;
+  margin: 1rem 0 0;
+  font-weight: 300;
+  font-size: .8em;
+  text-transform: uppercase;
+  line-height: 1rem;
+  white-space: nowrap;
+}
+
+.label_multiline {
+  white-space: normal;
+}

@@ -16,11 +16,13 @@ function eventListController($http, $timeout, CONFIG) {
     updateEvents(true);
     ////////////////////
 
-    function updateEvents(initialUpdate) {
+    function updateEvents() {
         // get events via $http
-        $http.get(CONFIG.urlBase + '/api/event').then(onEventsLoadedSuccess, onEventsLoadedError);
-        // set timeout for next update if this is the initial update
-        if (initialUpdate) $timeout(updateEvents, CONFIG.eventRefreshDuration);
+        $http.get(CONFIG.urlBase + '/api/event')
+            .then(onEventsLoadedSuccess)
+            .catch(onEventsLoadedError);
+        // set timeout for next update
+        $timeout(updateEvents, CONFIG.eventRefreshDuration);
     }
 
     function onEventsLoadedSuccess(response) {

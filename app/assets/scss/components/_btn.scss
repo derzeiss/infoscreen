@@ -1,62 +1,30 @@
 .btn {
-  @extend %no-select;
+  @extend %no-user-select;
   display: inline-block;
   font: inherit;
+  cursor: pointer;
   border: none;
   background: none;
-  cursor: pointer;
-}
-
-.btn_round {
-  border-radius: 1000px;
-}
-
-.btn_icon {
-  flex: 0 0 $btn-icon--size;
-  min-width: $btn-icon--size;
-  max-width: $btn-icon--size;
-  width: $btn-icon--size;
-  height: $btn-icon--size;
-  line-height: $btn-icon--size;
-  text-align: center;
-  color: $col-white;
-  transition: background .2s;
-}
-
-.btn_icon:hover, .btn_icon:focus {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.btn_icon:active {
-  background: rgba(255, 255, 255, 0.2);
-  transition: none;
+  outline: none;
 }
 
 .btn_cta {
-  height: $input--height;
-  line-height: $input--height;
-  padding: 0 12px;
-  transition: background .1s;
+  display: inline-block;
+  padding: .4rem 1.3rem;
+  text-transform: uppercase;
+  font-size: .9em;
+  line-height: 2em;
+  color: #fff;
+  background: $c-secondary;
+  transition: background .15s;
 }
 
-.btn_floating-action {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  flex-basis: $btn_floating-action--size;
-  width: $btn_floating-action--size;
-  min-width: $btn_floating-action--size;
-  max-width: $btn_floating-action--size;
-  height: $btn_floating-action--size;
-  line-height: $btn_floating-action--size;
-  background: $col-accent;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+.btn_cta:hover {
+  color: #fff;
+  background: $c-primary
 }
 
-.btn_floating-action:hover, .btn_floating-action:focus {
-  background: lighten($col-accent, 6%);
-}
-
-.btn_floating-action:active {
-  background: lighten($col-accent, 18%);
+.btn_cta:active {
+  transform: scale(.95);
+  box-shadow: none;
 }

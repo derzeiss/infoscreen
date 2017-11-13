@@ -1,0 +1,49 @@
+// ---------- MIXINS ----------
+@mixin flex($direction, $align-items, $justify-content, $wrap: null) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align-items;
+  justify-content: $justify-content;
+
+  @if ($wrap != null) {
+    flex-wrap: $wrap;
+  }
+}
+
+@mixin mq($breakpoint) {
+  @if $breakpoint == 0 {
+    @content;
+  } @else {
+    @media(min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+@mixin flex-width($width) {
+  flex-basis: $width;
+  min-width: $width;
+  max-width: $width;
+}
+
+// ---------- CLASSES ----------
+%no-user-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+%abs-fullsize {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+%one-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

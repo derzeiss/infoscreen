@@ -1,15 +1,17 @@
 @import '__config';
 @import '__config-info';
-@import 'mixins';
-@import 'font';
+@import 'util';
 @import 'reset';
-@import 'input';
-@import 'components/btn';
-@import 'components/event';
-@import 'components/impression';
-@import 'components/menu';
 
+/* components for main view */
+@import 'components/event';
 @import 'components/info';
+
+/* components for manage view */
+@import 'components/btn';
+@import 'components/input';
+@import 'components/notification-bar';
+@import 'components/manage';
 
 .img-container {
   display: flex;
@@ -17,10 +19,4 @@
   justify-content: center;
   width: 100%;
   overflow: hidden;
-}
-
-%one-line {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }

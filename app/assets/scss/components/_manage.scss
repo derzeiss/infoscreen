@@ -1,0 +1,85 @@
+.mg--grid {
+  @include flex(row, flex-start, flex-start);
+}
+
+.mg--grid__block {
+  margin: 1rem;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2), 0 5px 7px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.mg--list {
+  width: 230px;
+}
+
+.mg--list__title {
+  @extend .label;
+  display: block;
+  margin: 0;
+  padding: 0.8rem 0.6rem;
+  color: lighten($c-secondary, 30%);
+  background: #eee;
+}
+
+.mg--list__item {
+  @extend .btn;
+  @include flex(row, center, flex-start);
+  padding: .8rem 1rem;
+  transition: color .2s, background .2s;
+}
+
+.mg--list__item:hover {
+  color: #fff;
+  background: $c-secondary;
+}
+
+.mg--list__item_icon {
+  padding-left: .8rem;
+}
+
+.mg--list__item_selected {
+  background: #cecece;
+}
+
+.mg--list__icon {
+  margin-right: .6rem;
+  opacity: .7;
+}
+
+.mg--list__img {
+  @include flex-width(64px);
+  height: 64px;
+  margin-right: 18px;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.mg--list__label {
+  @extend %one-line;
+}
+
+.mg--detail {
+  max-width: 340px;
+  padding: 1rem;
+}
+
+.mg--detail__img-wrapper {
+  width: 100%;
+  padding-top: 100%;
+  background: $c-secondary;
+}
+
+.mg--detail__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+}

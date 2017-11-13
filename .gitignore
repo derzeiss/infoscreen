@@ -4,6 +4,7 @@ node_modules/
 api/cookies/
 api/data/
 api/config.*.js
+tmp/
 
 app/assets/bower_components/
 app/assets/scss/base.css

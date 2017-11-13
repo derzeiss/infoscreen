@@ -12,7 +12,7 @@ angular
                     template: '<info-main></info-main>'
                 })
                 .when('/manage', {
-                    template: '<impression-list></impression-list>'
+                    template: '<manage></manage>'
                 })
                 .otherwise('/')
 

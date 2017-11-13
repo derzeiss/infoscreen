@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('infoscreen', [
-    'ngAnimate',
     'ngRoute',
     'ngFileUpload',
 
@@ -12,6 +11,7 @@ angular.module('infoscreen', [
     'infoClock',
     'eventList',
     'eventItem',
-    'impressionList',
-    'impressionCard'
+
+    'element.notificationBar',
+    'view.manage'
 ]);
