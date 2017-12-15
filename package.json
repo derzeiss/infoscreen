@@ -8,24 +8,15 @@
     "url": "git://github.com/derzeiss/infoscreen.git"
   },
   "scripts": {
-    "postinstall": "bower install && npm run build",
+    "postinstall": "npm run build",
     "build": "gulp default"
   },
   "dependencies": {
-    "cors": "latest",
-    "body-parser": "latest",
-    "express": "^4",
-    "multiparty": "latest",
-    "promised-io": "latest",
-    "request": "latest"
-  },
-  "devDependencies": {
-    "bower": "latest",
-    "gulp": "latest",
-    "gulp-clean-css": "latest",
-    "gulp-filter": "^5.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "latest",
-    "gulp-sourcemaps": "^2.6.1"
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   }
 }

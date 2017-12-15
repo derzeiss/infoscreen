@@ -166,39 +166,6 @@ app.delete('/api/impressionImg/:filename', function (req, res, next) {
 
 // ---------- EVENTS ----------
 
-app.get('/api/event', function (req, res) {
-    var doneLogin, doneEvents, doneResources;
-
-    // login if needed
-    if (!app.data.cookies) doneLogin = requestLogin();
-    else doneLogin = Deferred().resolve();
-
-    whenAll(doneLogin).then(
-        // onSuccess: request events and resources
-        function () {
-            doneEvents = requestEvents();
-            doneResources = requestResources();
-
-            whenAll(doneEvents, doneResources).then(
-                // onSuccess: normalize events and send
-                function (responses) {
-                    var events = responses[0];
-                    var resources = responses[1];
-
-                    res.send(normalizeEvents(events, resources));
-
-                },
-                // onError: send error
-                function (err) {
-                    res.status(500).send(err);
-                })
-        },
-        // onError: send error
-        function (err) {
-            res.status(500).send(err);
-        }
-    )
-});
 
 /**
  * Convert all events into a readable format

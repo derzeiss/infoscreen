@@ -1,0 +1,44 @@
+const fs = require('bluebird').promisifyAll(require('fs'));
+const path = require('path');
+const config = require('../config');
+
+/**
+ * log error and return logged message
+ * @returns {string} - formatted error message
+ * @param customErr
+ * @param originalErr
+ */
+function getError(customErr, originalErr) {
+    let msg = `${customErr.url} | ${customErr.name}: ${customErr.message}\nOriginal error: ${originalErr.name}: ${originalErr.message}`;
+
+    error(msg);
+    return msg;
+}
+
+// @formatter:off
+function log() { write('log', arguments); }
+function warn() { write('warn', arguments); }
+function error() { write('err', arguments); }
+// @formatter:on
+
+/**
+ * Write into log file.
+ * @param type {string} - logging type. Usually log, warn or err
+ * @param arguments {Array} - array of elements to log
+ */
+function write(type, arguments) {
+    let logPath = path.join(__dirname, '..', config.app.path.log),
+        msg = `${new Date().toISOString()} [${type.toUpperCase()}]: ${arguments.join(', ')}`;
+    msg = msg.replace(/\n/g, '\n\t');
+
+    fs.writeFileAsync(logPath, msg).catch((err) => {
+        throw err;
+    });
+}
+
+module.exports = {
+    getError: getError,
+    log: log,
+    warn: warn,
+    error: error
+};

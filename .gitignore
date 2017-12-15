@@ -15,5 +15,3 @@ app/assets/scss/base.min.css.map
 
 app/imp/*
 !app/imp/transparent.png
-
-package-lock.json
