@@ -1,17 +1,14 @@
 .idea/
 node_modules/
 
-api/cookies/
-api/data/
-api/config.*.js
+server/data/
+server/config/*
+!server/config/default
+!server/config/index.js
 tmp/
 
-app/assets/bower_components/
-app/assets/scss/base.css
-app/assets/scss/base.css.map
-app/assets/scss/base.min.css
-app/assets/scss/base.min.css.map
-
+*.css
+*.css.map
 
 app/imp/*
 !app/imp/transparent.png

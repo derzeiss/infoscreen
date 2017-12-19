@@ -3,7 +3,7 @@
   "showEventsWithoutBookings": true,
   "showMultipleLocations": true,
   "locationPriority": [],
-  "debug": true,
+  "debug": false,
   "port": 3000,
   "enableCors": true,
   "proxy": null,

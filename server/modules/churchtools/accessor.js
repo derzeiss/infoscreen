@@ -1,9 +1,42 @@
+const debug = require('debug')('app:modules:ct:accessor');
 const bluebird = require('bluebird');
 const request = require('request-promise');
-const auth = require('./auth');
 const config = require('../../config');
 const logger = require('../logger');
 
+/* ---------- AUTH ---------- */
+let cookies = null;
+
+/**
+ * Use login as middleware
+ * @param req
+ * @param res
+ * @param next
+ */
+function loginRequired(req, res, next) {
+    return login().then(next).catch(next);
+}
+
+/**
+ * fire user login request
+ * @returns {*}
+ */
+function login() {
+    if (cookies) return new Promise((res, rej) => res());
+    return requestJSON({
+        q: 'login',
+        func: 'login',
+        resolveWithFullResponse: true,
+        body: {
+            email: config.ct.email,
+            password: config.ct.password
+        }
+    }).then((response) => {
+        cookies = response.headers['set-cookie'].join(';');
+    });
+}
+
+/* ---------- REQUEST ---------- */
 /**
  * Request data from ChurchTools-API. Calls requestJsonFromCt.
  * @param options.q {string} - q param
@@ -12,12 +45,11 @@ const logger = require('../logger');
  * * @return {Promise}
  */
 function requestData(options) {
-    console.log(auth);
     return requestJSON({
         q: options.q,
         func: options.func,
         body: options.body,
-        headers: auth.getSessionHeaders()
+        headers: {'Cookie': cookies}
     });
 }
 
@@ -77,6 +109,8 @@ function requestJSON(options) {
 }
 
 module.exports = {
+    loginRequired: loginRequired,
+
     requestJSON: requestJSON,
     requestData: requestData
 };

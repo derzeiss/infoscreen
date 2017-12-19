@@ -1,3 +1,4 @@
+const debug = require('debug')('app:modules:logger');
 const fs = require('bluebird').promisifyAll(require('fs'));
 const path = require('path');
 const config = require('../config');
@@ -27,7 +28,8 @@ function error() { write('err', arguments); }
  * @param arguments {Array} - array of elements to log
  */
 function write(type, arguments) {
-    let logPath = path.join(__dirname, '..', config.app.path.log),
+    if(!Array.isArray(arguments)) arguments = Array.prototype.slice.call(arguments);
+    let logPath = path.join(__dirname, '..', config.app.path.log, new Date().getTime() + '.txt'),
         msg = `${new Date().toISOString()} [${type.toUpperCase()}]: ${arguments.join(', ')}`;
     msg = msg.replace(/\n/g, '\n\t');
 

@@ -1,10 +1,12 @@
+require('dotenv').config();
+const debug = require('debug')('app:server');
 const express = require('express');
 const path = require('path');
 const config = require('./config');
 
 const app = express();
 
-require('body-parser').json();
+app.use(require('body-parser').json());
 if (config.app.enableCors) app.use(require('cors')());
 
 // require routes
@@ -15,7 +17,7 @@ app.use(express.static(path.join(__dirname, '..', 'app')));
 
 // 404 handler
 app.use((req, res, next) => {
-    let err = new Error('Not Found');
+    let err = new Error('Not Found:', req.url);
     err.status = 404;
     next(err);
 });
@@ -33,5 +35,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(config.app.port, function () {
-    console.log('listening on port', config.app.port);
+    debug('listening on port', config.app.port);
 });
