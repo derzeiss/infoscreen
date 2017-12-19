@@ -28,7 +28,7 @@ function error() { write('err', arguments); }
  * @param arguments {Array} - array of elements to log
  */
 function write(type, arguments) {
-    if(!Array.isArray(arguments)) arguments = Array.prototype.slice.call(arguments);
+    if (!Array.isArray(arguments)) arguments = Array.prototype.slice.call(arguments);
     let logPath = path.join(__dirname, '..', config.app.path.log, new Date().toISOString().split('T')[0] + '.txt'),
         msg = `${new Date().toISOString()} [${type.toUpperCase()}]: ${arguments.join(', ')}`;
     msg = msg.replace(/\n/g, '\n\t') + '\n';
@@ -37,6 +37,10 @@ function write(type, arguments) {
         throw err;
     });
 }
+
+// log config state onInit
+log('---------- Server starting ----------');
+log(config.msg);
 
 module.exports = {
     getError: getError,

@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 let config = null;
+let msg = null;
 try {
     let name = fs.readFileSync(path.join(__dirname, 'default-config'), 'utf-8');
     try {
@@ -10,19 +11,21 @@ try {
             ct: require(`./${name}/ct.json`),
             app: require(`./${name}/app.json`)
         };
-        debug(`using config "${name}"`)
+        msg = `using config "${name}"`
     } catch (e) {
-        debug(`config "${name}" is invalid; using default config.\n Original error: ${e}`)
+        msg = `config "${name}" is invalid; using default config.`;
     }
 } catch (e) {
-    debug(`custom config file not found; using default config.\n Original error: ${e}`);
+    msg = 'custom config file not found; using default config.';
 }
 
 if (!config) {
     config = {
         ct: require(`./default/ct.json`),
-        app: require(`./default/app.json`)
+        app: require(`./default/app.json`),
     }
 }
 
+debug(msg);
+config.msg = msg;
 module.exports = config;

@@ -1,13 +1,17 @@
+# dev specific
 .idea/
 node_modules/
-.env
-
-server/data/
-server/config/*
-!server/config/default
-!server/config/index.js
 tmp/
 
+# server
+.env
+server/config/
+!server/config/default
+!server/config/index.js
+server/data/
+server/log/
+
+# client
 *.css
 *.css.map
 
