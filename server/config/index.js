@@ -4,7 +4,7 @@ const path = require('path');
 
 let config = null;
 try {
-    let name = fs.readFileSync(path.join(__dirname, 'default-config.txt'), 'utf-8');
+    let name = fs.readFileSync(path.join(__dirname, 'default-config'), 'utf-8');
     try {
         config = {
             ct: require(`./${name}/ct.json`),
