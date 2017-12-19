@@ -78,21 +78,11 @@ File | Usage | Action to apply changes
 
 ## Todo
 
-### overall
 * Better error reporting / logging in production use
 * Add config-view
 * Work on "Configuring your infoscreen"
 * Documentation...
 
-### manage
-* Feedback onSave
-* Fix console errors for unsaved impressions
-
-### info
-* Show impression date if there are events from more than one day
-* Filter events
-    * Sort events by Date and then by time (usually done by CT-API)
-    
 [installer-win]: https://raw.githubusercontent.com/derzeiss/infoscreen/master/script/installer.bat
 [nodejs-home]: https://nodejs.org
 [git-win]: https://git-for-windows.github.io/

@@ -12,9 +12,10 @@
     function manageController(CONFIG, Upload, Impression) {
         var ctrl = this;
 
-        ctrl.selectedItem = null;
         ctrl.impressions = Impression.query();
         ctrl.obsoleteImages = [];
+        ctrl.selectedImpression = null;
+        ctrl.selectedImpressionIndex = null;
 
         ctrl.onNotificationBarInit = onNotificationBarInit;
         ctrl.selectImpression = selectImpression;
@@ -64,6 +65,7 @@
             Impression.save(ctrl.impressions).$promise.then(function () {
                 ctrl.notificationBar.showMessage('Speichern erfolgreich');
 
+                console.log('save - ctrl.obsoleteImages', ctrl.obsoleteImages);
                 // remove obsolete images
                 ctrl.obsoleteImages.forEach(function (img) {
                     Impression.deleteImage({filename: img});
@@ -95,8 +97,11 @@
         function uploadImpressionImage(file) {
             if (!file) return;
             file.upload = Upload.upload({
-                url: CONFIG.urlBase + '/api/impressionImg',
-                data: {impression: file}
+                url: CONFIG.urlBase + '/api/impression/img',
+                data: {
+                    img: file,
+                    name: ctrl.selectedImpression.name
+                }
             });
             file.upload.then(
                 function (response) {

@@ -12,7 +12,7 @@
                  ng-click="$ctrl.selectImpression($index)"
                  ng-repeat="impression in $ctrl.impressions track by $index">
                 <div class="mg--list__img"
-                     ng-style="{'background-image': 'url(imp/' + (impression.img || 'transparent.png') + ')'}"></div>
+                     ng-style="{'background-image': 'url(data/impression/' + (impression.img || 'transparent.png') + ')'}"></div>
                 <div class="mg--list__label">{{impression.name}}</div>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="mg--detail">
             <div class="mg--detail__img-wrapper">
                 <img class="mg--detail__img"
-                     ng-src="{{'../imp/' + ($ctrl.selectedImpression.img || 'transparent.png')}}">
+                     ng-src="{{'../data/impression/' + ($ctrl.selectedImpression.img || 'transparent.png')}}">
             </div>
 
             <label class="label" for="name">Name</label>

@@ -28,6 +28,12 @@ function eventListController($http, $timeout, CONFIG) {
     function onEventsLoadedSuccess(response) {
         if (CONFIG.clientDebug) console.log('[eventList][controller] events loaded successfully:', response.data);
         ctrl.events = response.data;
+
+        if (!ctrl.events.length) ctrl.events = [{
+            "title": "Für heute war's das.",
+            "location": "Es stehen keine Termine mehr im Kalender",
+        }];
+
         ctrl.events.sort(function (a, b) {
             return timeToInt(a.time) - timeToInt(b.time);
         });

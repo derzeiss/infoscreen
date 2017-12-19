@@ -10,5 +10,5 @@ tmp/
 *.css
 *.css.map
 
-app/imp/*
-!app/imp/transparent.png
+app/data/
+!app/data/impression/transparent.png

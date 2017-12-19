@@ -123,7 +123,7 @@ function normalizeEvents(events, resources) {
             normalizedEvents.push(normalizedEvent);
         } else if (config.app.showEventsWithoutBookings) {
             normalizedEvents.push(normalizedEvent);
-        } else console.log('filtered cause it has no bookings', event)
+        } else debug('filtered cause it has no bookings', event)
     }
     return normalizedEvents;
 }
