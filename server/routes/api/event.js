@@ -2,13 +2,13 @@ const debug = require('debug')('app:routes:event');
 const router = require('express').Router();
 const bluebird = require('bluebird');
 const config = require('../../config');
-const accessor = require('../../modules/churchtools/accessor');
+const churchtools = require('../../modules/churchtools');
 const logger = require('../../modules/logger');
 
-router.get('/', accessor.loginRequired, (req, res, next) => {
+router.get('/', churchtools.loginRequired, (req, res, next) => {
     let promises = [];
 
-    promises.push(accessor.requestData({
+    promises.push(churchtools.requestData({
         q: 'churchcal',
         func: 'getMasterData'
     }).then((data) => {
@@ -17,7 +17,7 @@ router.get('/', accessor.loginRequired, (req, res, next) => {
             if (!data.category.hasOwnProperty(id)) continue;
             categories.push(id);
         }
-        return accessor.requestData({
+        return churchtools.requestData({
             q: 'churchcal',
             func: 'getCalendarEvents',
             body: {
@@ -27,7 +27,7 @@ router.get('/', accessor.loginRequired, (req, res, next) => {
             }
         });
     }));
-    promises.push(accessor.requestData({
+    promises.push(churchtools.requestData({
         q: 'churchresource',
         func: 'getMasterData'
     }));

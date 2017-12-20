@@ -5,7 +5,7 @@ tmp/
 
 # server
 .env
-server/config/
+server/config/*
 !server/config/default
 !server/config/index.js
 server/data/
