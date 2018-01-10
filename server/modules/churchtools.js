@@ -1,8 +1,8 @@
 const debug = require('debug')('app:modules:ct:accessor');
 const bluebird = require('bluebird');
 const request = require('request-promise');
-const config = require('../../config');
-const logger = require('../logger');
+const config = require('../config');
+const logger = require('./logger');
 
 /* ---------- AUTH ---------- */
 let cookies = null;

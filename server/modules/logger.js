@@ -30,7 +30,8 @@ function error() { write('err', arguments); }
 function write(type, arguments) {
     if (!Array.isArray(arguments)) arguments = Array.prototype.slice.call(arguments);
     let logPath = path.join(__dirname, '..', config.app.path.log, new Date().toISOString().split('T')[0] + '.txt'),
-        msg = `${new Date().toISOString()} [${type.toUpperCase()}]: ${arguments.join(', ')}`;
+        time = new Date().toISOString().replace('T', ' ').replace('Z', ''),
+        msg = `[${type.toUpperCase()}] ${time}: ${arguments.join(', ')}`;
     msg = msg.replace(/\n/g, '\n\t') + '\n';
 
     fs.appendFileAsync(logPath, msg).catch((err) => {

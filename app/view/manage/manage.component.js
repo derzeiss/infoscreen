@@ -3,19 +3,19 @@
     angular
         .module('view.manage', [])
         .component('manage', {
-            templateUrl: 'manage/manage.template.html',
+            templateUrl: 'view/manage/manage.template.html',
             controller: manageController
         });
 
     manageController.$inject = ['CONFIG', 'Upload', 'Impression'];
 
     function manageController(CONFIG, Upload, Impression) {
-        var ctrl = this;
+        const ctrl = this;
 
         ctrl.impressions = Impression.query();
-        ctrl.obsoleteImages = [];
         ctrl.selectedImpression = null;
         ctrl.selectedImpressionIndex = null;
+        ctrl.actions = [];
 
         ctrl.onNotificationBarInit = onNotificationBarInit;
         ctrl.selectImpression = selectImpression;
@@ -35,8 +35,21 @@
             description: ''
         };
         //////////////////////////////
+
+        window.addEventListener('beforeunload', (e) => {
+            commitActions(ctrl.actions, 'discard');
+            ctrl.actions = [];
+        });
+
         function onNotificationBarInit(notificationBar) {
             ctrl.notificationBar = notificationBar;
+        }
+
+        function commitActions(actions, name) {
+            if (!actions || !Array.isArray(actions)) return;
+            actions.forEach((action) => {
+                if (action[name] && typeof action[name] === 'function') action[name]();
+            });
         }
 
         function selectImpression(index) {
@@ -50,8 +63,8 @@
 
         function removeImpression() {
             if (!ctrl.selectedImpression) return;
-            if (ctrl.selectedImpression.img) ctrl.obsoleteImages.push(ctrl.selectedImpression.img);
-            var nextSelectedIndex = Math.min(ctrl.selectedImpressionIndex, ctrl.impressions.length - 2);
+            if (ctrl.selectedImpression.img) ctrl.actions.push({save: getActionMethod.deleteImg(ctrl.selectedImpression.img)});
+            let nextSelectedIndex = Math.min(ctrl.selectedImpressionIndex, ctrl.impressions.length - 2);
 
             ctrl.impressions.splice(ctrl.selectedImpressionIndex, 1);
             ctrl.selectedImpression = null;
@@ -61,25 +74,19 @@
         }
 
         function save() {
-            console.log('save');
-            Impression.save(ctrl.impressions).$promise.then(function () {
+            Impression.save(ctrl.impressions).$promise.then(() => {
                 ctrl.notificationBar.showMessage('Speichern erfolgreich');
-
-                console.log('save - ctrl.obsoleteImages', ctrl.obsoleteImages);
-                // remove obsolete images
-                ctrl.obsoleteImages.forEach(function (img) {
-                    Impression.deleteImage({filename: img});
-                });
-
-            }).catch(function (err) {
-                console.log(err);
+                commitActions(ctrl.actions, 'save');
+                ctrl.actions = [];
+            }).catch((err) => {
+                console.warn(err);
                 ctrl.notificationBar.showMessage('Speichern fehlgeschlagen');
             });
         }
 
         function moveUp() {
             if (!ctrl.selectedImpression) return;
-            var item = ctrl.impressions.splice(ctrl.selectedImpressionIndex, 1)[0],
+            let item = ctrl.impressions.splice(ctrl.selectedImpressionIndex, 1)[0],
                 insertAt = Math.max(0, ctrl.selectedImpressionIndex - 1);
             ctrl.impressions.splice(insertAt, 0, item);
             ctrl.selectImpression(insertAt);
@@ -87,9 +94,8 @@
 
         function moveDown() {
             if (!ctrl.selectedImpression) return;
-            var item = ctrl.impressions.splice(ctrl.selectedImpressionIndex, 1)[0],
+            let item = ctrl.impressions.splice(ctrl.selectedImpressionIndex, 1)[0],
                 insertAt = Math.min(ctrl.impressions.length, ctrl.selectedImpressionIndex + 1);
-            console.log(item, insertAt);
             ctrl.impressions.splice(insertAt, 0, item);
             ctrl.selectImpression(insertAt);
         }
@@ -104,20 +110,29 @@
                 }
             });
             file.upload.then(
-                function (response) {
-                    if (ctrl.selectedImpression.img) ctrl.obsoleteImages.push(ctrl.selectedImpression.img);
+                (response) => {
+                    // add an action to delete either old image on save or new image on discard
+                    ctrl.actions.push({
+                        save: ctrl.selectedImpression.img ? getActionMethod.deleteImg(ctrl.selectedImpression.img) : null,
+                        discard: getActionMethod.deleteImg(response.data.filename)
+                    });
+                    // set new img and show confirmation message
                     ctrl.selectedImpression.img = response.data.filename;
                     ctrl.notificationBar.showMessage('Upload erfolgreich');
                 },
-                function (err) {
-                    console.log(err);
+                (err) => {
+                    console.warn(err);
                     ctrl.notificationBar.showMessage('Upload fehlgeschlagen');
                 },
-                function (ev) {
+                (ev) => {
                     // TODO upload progress
                 }
             )
         }
+
+        let getActionMethod = {
+            deleteImg: (filename) => (() => Impression.deleteImage({filename: filename}).$promise.catch((err) => console.warn(err)))
+        };
 
     }
 })();

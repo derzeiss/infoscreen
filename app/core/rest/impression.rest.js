@@ -1,7 +1,12 @@
 'use strict';
+(function () {
+    angular
+        .module('core.impression', [])
+        .factory('Impression', impressionFactory);
 
-angular.module('core.impression')
-    .factory('Impression', ['$resource', 'CONFIG', function ($resource, CONFIG) {
+    impressionFactory.$inject = ['$resource', 'CONFIG'];
+
+    function impressionFactory($resource, CONFIG) {
         return $resource(CONFIG.urlBase + '/api/impression/:id', {}, {
             save: {
                 method: 'post',
@@ -13,4 +18,5 @@ angular.module('core.impression')
                 isArray: false
             }
         });
-    }]);
+    }
+})();

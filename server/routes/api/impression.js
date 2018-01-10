@@ -71,6 +71,7 @@ router.post('/img', (req, res, next) => {
         }
 
         // generate new filename
+        name = name.replace(/\s/g, '_').replace(/\W/g, '').replace(/^_+|_+$/g, '');
         let filenameSplit = img.originalFilename.split('.'),
             newName = (name + '-' + new Date().getTime() + '.' + filenameSplit[filenameSplit.length - 1]).toLowerCase(),  // <imp-name>-<time>.<file-ending>
             newPath = path.join(pathImpressionImgs, newName); // full path
@@ -91,7 +92,6 @@ router.post('/img', (req, res, next) => {
 });
 
 router.delete('/img/:name', function (req, res, next) {
-    debug('delete', req.params.name);
     fs.unlinkAsync(path.join(pathImpressionImgs, req.params.name))
         .then(() => res.sendStatus(204))
         .catch(next);

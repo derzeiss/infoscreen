@@ -3,7 +3,7 @@
     angular
         .module('element.notificationBar', [])
         .component('notificationBar', {
-            templateUrl: 'notification-bar/notification-bar.template.html',
+            templateUrl: 'element/notification-bar/notification-bar.template.html',
             controller: notificationBarController,
             bindings: {
                 msg: '<',
@@ -14,18 +14,20 @@
     notificationBarController.$inject = ['$timeout'];
 
     function notificationBarController($timeout) {
-        var ctrl = this;
+        const ctrl = this;
 
         ctrl.isVisible = false;
         ctrl.timeout = null;
 
-        ctrl.$onInit = function() {
-            ctrl.onInit({$notificationBar: {
-                showMessage: showMessage
-            }})
+        ctrl.$onInit = () => {
+            ctrl.onInit({
+                $notificationBar: {
+                    showMessage: showMessage
+                }
+            })
         };
 
-        ctrl.$onChanges = function (change) {
+        ctrl.$onChanges = (change) => {
             if (change.msg && change.msg.currentValue) {
                 showMessage(change.msg.currentValue);
             }
@@ -42,7 +44,7 @@
         function hideMessage() {
             ctrl.isVisible = false;
 
-            ctrl.timeout = $timeout(function() {
+            ctrl.timeout = $timeout(() => {
                 ctrl.displayMsg = null;
             }, 200);
         }

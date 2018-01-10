@@ -1,7 +1,15 @@
 'use strict';
 
 angular
-    .module('infoscreen')
+    .module('infoscreen', [
+        'ngResource',
+        'ngRoute',
+        'ngFileUpload',
+
+        'core',
+        'view',
+        'element'
+    ])
 
     .config(['$locationProvider', '$routeProvider',
         function ($locationProvider, $routeProvider) {
@@ -27,11 +35,5 @@ angular
         eventFxDuration: 2 * 1000,
         eventRefreshDuration: 15 * 60 * 1000,
         impressionRefreshDuration: 15 * 60 * 1000,
-        clientDebug: true,
-        baseImpression: {
-            name: '',
-            duration: 0,
-            description: '',
-            img: ''
-        }
+        clientDebug: true
     });
