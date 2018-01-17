@@ -1,0 +1,9 @@
+<div class="in--impression"
+     ng-style="{'background-image': 'url(\'data/impression/' + impression.img + '\')'}"
+     ng-class="{'is-visible': $ctrl.isImpressionVisible($index)}"
+     ng-repeat="impression in $ctrl.impressions track by $index">
+
+    <div class="in--impression__description" ng-if="impression.description">{{impression.description}}</div>
+</div>
+
+<info-clock></info-clock>

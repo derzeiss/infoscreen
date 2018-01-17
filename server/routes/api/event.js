@@ -6,6 +6,33 @@ const churchtools = require('../../modules/churchtools');
 const logger = require('../../modules/logger');
 
 router.get('/', churchtools.loginRequired, (req, res, next) => {
+    // TODO remove DEBUG
+    return res.json([{
+        "title": "Test eins",
+        "time": "19:00",
+        "location": "Konferenzraum",
+        "level": "EG"
+    },
+    {
+        "title": "Test zwei",
+        "time": "10:00",
+        "location": "Jugendraum, Küche",
+        "level": "OG"
+    },
+    {
+        "title": "Test drei",
+        "time": "11:45",
+        "location": "Galerie",
+        "level": "EG"
+    },
+    {
+        "title": "Test vier",
+        "time": "13:00",
+        "location": "Konferenzraum",
+        "level": "UG"
+    }]);
+
+
     let promises = [];
 
     promises.push(churchtools.requestData({

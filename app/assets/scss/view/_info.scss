@@ -1,0 +1,99 @@
+info {
+  display: block;
+  width: $infoscreen--width;
+  height: $infoscreen--height;
+  font-size: $infoscreen--font-size;
+  background: #fff;
+}
+
+info-impressions {
+  display: block;
+  width: $impression--width;
+  height: $impression--height;
+  z-index: 1;
+  background: $c-grey-1;
+  overflow: hidden;
+}
+
+.in--impression {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity #{$impression--fading-duration}, visibility #{$impression--fading-duration};
+}
+
+.in--impression__description {
+  position: absolute;
+  bottom: $impression-description--offset-bot;
+  right: $impression-description--offset-right;
+  padding: 1em;
+  line-height: 1.3em;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+}
+
+info-clock {
+  position: absolute;
+  bottom: $event--spacing * .6;
+  right: $event--spacing;
+  z-index: 1;
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 1em;
+  color: #fff;
+  text-shadow: 0 2px 16px #000, 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+// ---------- events ----------
+info-events {
+  display: block;
+  top: -$event--height;
+  width: $event-list--width;
+  height: $event-list--height + $event--height;
+  background: #f1f1f1;
+  overflow: hidden;
+}
+
+.in--event {
+  @include flex(row, center, flex-start);
+  width: $event--width;
+  height: $event--height;
+  padding: 0 $event--spacing / 2;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+}
+
+.in--event_hidden {
+  height: 0;
+  transition: height $event--fx-duration;
+}
+
+.in--event__col {
+  padding: 0 $event--spacing / 2;
+}
+
+.in--event__col_left {
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.in--event__title {
+  @extend %one-line;
+  line-height: 1.8em;
+}
+
+.in--event__meta {
+  @extend %one-line;
+  font-size: .9em;
+  line-height: 1.1em;
+  opacity: .6;
+}

@@ -1,17 +1,17 @@
 @import '__config';
 @import '__config-info';
-@import 'util';
+@import 'helper';
 @import 'reset';
 
-/* components for main view */
-@import 'components/event';
-@import 'components/info';
-
 /* components for manage view */
-@import 'components/btn';
-@import 'components/input';
-@import 'components/notification-bar';
-@import 'components/manage';
+@import 'element/btn';
+@import 'element/input';
+@import 'element/notification-bar';
+@import 'element/util';
+
+// view
+@import 'view/info';
+@import 'view/manage';
 
 .img-container {
   display: flex;

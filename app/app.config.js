@@ -17,7 +17,7 @@ angular
 
             $routeProvider
                 .when('/', {
-                    template: '<info-main></info-main>'
+                    template: '<info></info>'
                 })
                 .when('/manage', {
                     template: '<manage></manage>'
