@@ -5,46 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>infoscreen</title>
 
-    <!-- dev: local versions -->
+    <!-- font -->
+     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!-- build:css -->
     <link rel="stylesheet" href="assets/material-icons/material-icons.css">
+    <link rel="stylesheet" href="assets/scss/base.css">
+    <!-- endbuild -->
+
+    <!-- build:js-lib -->
     <script src="assets/bower_components/angular/angular.js"></script>
     <script src="assets/bower_components/angular-route/angular-route.js"></script>
     <script src="assets/bower_components/angular-resource/angular-resource.js"></script>
     <script src="assets/bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <!-- endbuild -->
 
-    <link rel="stylesheet" href="assets/scss/base.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- bild:js-app -->
 
-    <!-- load app -->
-    <script src="app.module.js"></script>
+    <!-- load core app -->
     <script src="app.config.js"></script>
 
     <script src="core/core.module.js"></script>
-    <script src="core/impression/impression.module.js"></script>
-    <script src="core/impression/impression.service.js"></script>
+    <script src="core/rest/event.rest.js"></script>
+    <script src="core/rest/impression.rest.js"></script>
 
-    <!-- load components -->
-    <script src="event-list/event-list.module.js"></script>
-    <script src="event-list/event-list.component.js"></script>
+    <!-- load elements -->
+    <script src="element/element.js"></script>
+    <script src="element/info-clock/info-clock.component.js"></script>
+    <script src="element/info-events/info-events.component.js"></script>
+    <script src="element/info-impressions/info-impressions.component.js"></script>
+    <script src="element/notification-bar/notification-bar.component.js"></script>
 
-    <script src="event-item/event-item.module.js"></script>
-    <script src="event-item/event-item.component.js"></script>
+    <!-- load views -->
+    <script src="view/view.module.js"></script>
+    <script src="view/manage/manage.component.js"></script>
+    <script src="view/info/info.component.js"></script>
 
-    <script src="info-main/info-main.module.js"></script>
-    <script src="info-main/info-main.component.js"></script>
-
-    <script src="info-impression-container/info-impression-container.module.js"></script>
-    <script src="info-impression-container/info-impression-container.component.js"></script>
-
-    <script src="info-impression/info-impression.module.js"></script>
-    <script src="info-impression/info-impression.component.js"></script>
-
-    <script src="info-clock/info-clock.module.js"></script>
-    <script src="info-clock/info-clock.component.js"></script>
-
-    <script src="notification-bar/notification-bar.component.js"></script>
-    <script src="manage/manage.component.js"></script>
-
+    <!-- endbuild -->
 
 </head>
 <body ng-app="infoscreen">

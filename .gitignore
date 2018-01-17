@@ -1,19 +1,22 @@
+# dev specific
 .idea/
 node_modules/
-
-api/cookies/
-api/data/
-api/config.*.js
 tmp/
+deprecated/
+dist/
 
-app/assets/bower_components/
-app/assets/scss/base.css
-app/assets/scss/base.css.map
-app/assets/scss/base.min.css
-app/assets/scss/base.min.css.map
+# server
+.env
+server/config/*
+!server/config/default
+!server/config/index.js
+server/data/
+server/log/
 
+# client
+bower_components/
+*.css
+*.css.map
 
-app/imp/*
-!app/imp/transparent.png
-
-package-lock.json
+app/data/
+!app/data/impression/transparent.png

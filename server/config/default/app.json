@@ -1,0 +1,13 @@
+{
+  "showEventsForDays": 1,
+  "showEventsWithoutBookings": true,
+  "showMultipleLocations": true,
+  "locationPriority": [],
+  "debug": false,
+  "port": 80,
+  "enableCors": true,
+  "proxy": null,
+  "path": {
+    "log": "log"
+  }
+}

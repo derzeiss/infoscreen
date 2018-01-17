@@ -1,0 +1,11 @@
+<!-- animation helper -->
+<div class="in--event" ng-class="{'in--event_hidden': !$ctrl.isAnimationHelperVisible}"></div>
+
+<div class="in--event" ng-repeat="event in $ctrl.events track by $index">
+    <div class="in--event__col in--event__col_left">
+        <div class="in--event__title">{{event.title}}</div>
+        <div class="in--event__meta">{{event.location}}</div>
+    </div>
+    <div class="in--event__col">{{event.time}}</div>
+    <div class="in--event__col">{{event.level}}</div>
+</div>
