@@ -59,6 +59,7 @@
 
         function addImpression() {
             ctrl.impressions.push(angular.copy(ctrl.defaultImpression));
+            ctrl.selectImpression(ctrl.impressions.length - 1);
         }
 
         function removeImpression() {
