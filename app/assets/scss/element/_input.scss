@@ -25,6 +25,10 @@
   border-color: $c-secondary;
 }
 
+.input_text:disabled {
+  background: #ddd;
+}
+
 // ---------- label ----------
 .label {
   @extend .btn;

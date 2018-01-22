@@ -47,7 +47,6 @@ gulp.task('scss', () => {
 gulp.task('scss:watch', ['scss'], () => {
     return gulp.watch(path.scss + '/**/*.scss', ['scss']);
 });
-gulp.task('dev', ['scss:watch']);
 
 // ---------- BUILD TASKS ----------
 
@@ -57,7 +56,11 @@ gulp.task('htmlTemplates', () => {
             collapseWhitespace: true,
             removeComments: true
         }))
-        .pipe(gulp.dest(path.distApp))
+        .pipe(gulp.dest(path.distApp));
+});
+
+gulp.task('htmlTemplates:watch', ['htmlTemplates'], () => {
+    return gulp.watch([path.app + '/**/*.html', `!${path.app}/index.html`], ['htmlTemplates']);
 });
 
 gulp.task('htmlIndex', () => {
@@ -80,7 +83,16 @@ gulp.task('htmlIndex', () => {
         .pipe(gulp.dest(path.distApp));
 });
 
-gulp.task('css', ['scss'], () => {
+gulp.task('htmlIndex:watch', ['htmlIndex'], () => {
+    return gulp.watch(path.app + '/index.html', ['htmlIndex']);
+});
+
+gulp.task('icon', () => {
+    return gulp.src(path.assets + '/material-icons/*')
+        .pipe(gulp.dest(path.distApp + '/assets/material-icons'))
+});
+
+gulp.task('css', ['scss', 'icon'], () => {
     return gulp.src(path.assets + '/scss/base.css')
         .pipe(rename('app.css'))
         .pipe(gulp.dest(path.distApp + '/assets/css'))
@@ -89,8 +101,13 @@ gulp.task('css', ['scss'], () => {
         .pipe(gulp.dest(path.distApp + '/assets/css'))
 });
 
+gulp.task('css:watch', ['css'], () => {
+    return gulp.watch(path.assets + '/scss/base.css', ['css']);
+});
+
 gulp.task('js', () => {
     return gulp.src([
+        path.assets + '/bower_components/ng-file-upload/ng-file-upload.js',
         path.app + '/app.module.js',
         path.app + '/app.config.js',
         path.app + '/core/**/*.js',
@@ -109,11 +126,20 @@ gulp.task('js', () => {
         .pipe(gulp.dest(path.distApp + '/assets/js'));
 });
 
+gulp.task('js:watch', ['js'], () => {
+    return gulp.watch(path.app + '/**/*.js', ['js']);
+});
+
 gulp.task('img', () => {
-    return gulp.src([`${path.app}/data/impression/*`])
+    return gulp.src(`${path.app}/data/impression/*`)
         .pipe(imagemin({verbose: true}))
         .pipe(gulp.dest(`${path.distApp}/data/impression`))
 });
+
+gulp.task('img:watch', ['img'], () => {
+    return gulp.watch(`${path.app}/data/impression/*`, ['img']);
+});
+
 
 gulp.task('copy-server', () => {
     return gulp.src([
@@ -121,18 +147,16 @@ gulp.task('copy-server', () => {
         // remove data and log
         `!${path.server}/data{,/**}`,
         `!${path.server}/log{,/**}`,
-
-        /*`!${path.server}/config{,/**}`,
-         `${path.server}/config/default{,/**}`,
-         `${path.server}/config/index.js`,*/
-
     ])
         .pipe(gulp.dest(path.distServer));
 });
 
+gulp.task('copy-server:watch', ['copy-server'], () => {
+    return gulp.watch(path.server + '/**/*', ['copy-server']);
+});
+
 gulp.task('copy-package', () => {
     return gulp.src([
-        'gulpfile.js',
         'package.json',
         'package-lock.json'
     ])
@@ -141,3 +165,5 @@ gulp.task('copy-package', () => {
 
 gulp.task('build', ['htmlTemplates', 'htmlIndex', 'css', 'js', 'img', 'copy-server', 'copy-package']);
 gulp.task('default', ['build']);
+
+gulp.task('watch', ['htmlTemplates:watch', 'htmlIndex:watch', 'scss:watch', 'css:watch', 'js:watch', 'img:watch', 'copy-server:watch']);
