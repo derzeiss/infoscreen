@@ -32,6 +32,7 @@
             <input class="input input_text input_fullsize"
                    id="name"
                    type="text"
+                   ng-disabled="!$ctrl.selectedImpression"
                    ng-model="$ctrl.selectedImpression.name">
 
             <label class="label" for="duration">Anzeigedauer</label>
@@ -39,12 +40,14 @@
                    id="duration"
                    type="number"
                    min="0"
+                   ng-disabled="!$ctrl.selectedImpression"
                    ng-model=$ctrl.selectedImpression.duration>
 
             <label class="label" for="description">Beschreibung (optional)</label>
             <textarea class="input input_text input_fullsize"
                       id="description"
                       rows="3"
+                      ng-disabled="!$ctrl.selectedImpression"
                       ng-model="$ctrl.selectedImpression.description"></textarea>
         </div>
 

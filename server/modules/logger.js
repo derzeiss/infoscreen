@@ -1,5 +1,6 @@
 const debug = require('debug')('app:modules:logger');
 const fs = require('bluebird').promisifyAll(require('fs'));
+const mkdirp = require('mkdirp');
 const path = require('path');
 const config = require('../config');
 
@@ -34,8 +35,14 @@ function write(type, arguments) {
         msg = `[${type.toUpperCase()}] ${time}: ${arguments.join(', ')}`;
     msg = msg.replace(/\n/g, '\n\t') + '\n';
 
-    fs.appendFileAsync(logPath, msg).catch((err) => {
-        throw err;
+    fs.appendFileAsync(logPath, msg).catch(() => {
+        console.log('Log directory doesn\'t exist, attempting to create it');
+        mkdirp(path.dirname(logPath), function (err) {
+            if (err) throw err;
+            fs.appendFileAsync(logPath, msg).catch((err) => {
+                throw err;
+            });
+        });
     });
 }
 

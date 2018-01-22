@@ -48,7 +48,7 @@
             ctrl.currentImpressionIndex = (ctrl.currentImpressionIndex + 1) % ctrl.impressions.length || 0;
 
             // schedule next swap
-            $timeout(showNextImpression, ctrl.impressions[ctrl.currentImpressionIndex].duration * 1000);
+            if (ctrl.impressions.length) $timeout(showNextImpression, ctrl.impressions[ctrl.currentImpressionIndex].duration * 1000);
         }
 
         function removeImpression(impression) {
