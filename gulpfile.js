@@ -70,9 +70,9 @@ gulp.task('htmlIndex', () => {
                 '<link rel="stylesheet" ref="https://fonts.googleapis.com/icon?family=Material+Icons">'
             ],
             'js-lib': [
-                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js',
-                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-route.min.js',
-                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-resource.min.js'
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js',
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js',
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-resource.min.js'
             ],
             'js-app': 'assets/js/app.min.js'
         }))
@@ -107,7 +107,7 @@ gulp.task('css:watch', ['css'], () => {
 
 gulp.task('js', () => {
     return gulp.src([
-        path.assets + '/bower_components/ng-file-upload/ng-file-upload.js',
+        'node_modules/ng-file-upload/dist/ng-file-upload.js',
         path.app + '/app.module.js',
         path.app + '/app.config.js',
         path.app + '/core/**/*.js',
