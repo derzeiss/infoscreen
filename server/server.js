@@ -25,22 +25,22 @@ app.use((req, res, next) => {
 
 // send err to client
 app.use((err, req, res, next) => {
-    err.status = err.status || 500;
-    res.status(err.status);
+    let error = {
+        status: err.status || 500,
+        name: err.name,
+        message: err.message
+    };
+    res.status(error.status);
 
     // log err to console in dev environment
     if (process.env.NODE_ENV === 'development') console.error(err);
     logger.getError({
         url: req.url,
-        name: err.name,
-        message: err.message
+        name: error.name,
+        message: error.message
     }, err);
 
-    return res.json({
-        status: err.status,
-        name: err.name,
-        message: err.message
-    });
+    return res.json(error);
 });
 
 app.listen(config.app.port, function () {
