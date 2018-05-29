@@ -131,13 +131,13 @@ gulp.task('js:watch', ['js'], () => {
 });
 
 gulp.task('img', () => {
-    return gulp.src(`${path.app}/data/impression/*`)
+    return gulp.src(`${path.app}/data/impression/transparent.png`)
         .pipe(imagemin({verbose: true}))
         .pipe(gulp.dest(`${path.distApp}/data/impression`))
 });
 
 gulp.task('img:watch', ['img'], () => {
-    return gulp.watch(`${path.app}/data/impression/*`, ['img']);
+    return gulp.watch(`${path.app}/data/impression/transparent.png`, ['img']);
 });
 
 

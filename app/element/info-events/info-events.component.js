@@ -41,8 +41,10 @@
                     events.sort((a, b) => timeToInt(a.time) - timeToInt(b.time));
                     events.forEach((e) => ctrl.events.push(e));
 
-                    // start animating events if not already done
+                    // start animating events if not already done ...
                     if (!isAnimated && ctrl.events.length > 4) showNextEvent();
+                    // ... clean up events otherwise
+                    else cleanUpEvents()
                 }
             });
 
@@ -62,9 +64,23 @@
                 let e = ctrl.events.shift();
                 // push it to the end of events if it's not obsolete
                 if (!e.isObsolete) ctrl.events.push(e);
-                // keep animating if needed
+                // keep animating if needed ...
                 if (ctrl.events.length > 4) $timeout(showNextEvent, CONFIG.eventCycleTimeout - CONFIG.eventFxDuration);
+                // ... clean up events otherwise
+                else cleanUpEvents();
             }, CONFIG.eventFxDuration);
+        }
+
+        /**
+         * Do a hard clean up on ctrl.events removing all obsolete events instantly
+         */
+        function cleanUpEvents() {
+            // don't remove any events if the list is animated
+            if(ctrl.events.length > 4) return;
+            ctrl.events = ctrl.events.reduce((events, ev) => {
+                if(!ev.isObsolete) events.push(ev);
+                return events;
+            }, [])
         }
 
         /**
